@@ -1,0 +1,472 @@
+/* ── IMPORTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── VARIABLES ── */
+:root {
+    --gold:        #d4af37;
+    --gold-light:  #e8c96a;
+    --gold-dim:    rgba(212, 175, 55, 0.15);
+    --bg:          #141414;
+    --surface:     #1c1c1c;
+    --surface-2:   #242424;
+    --border:      #2e2e2e;
+    --text:        #f0ece4;
+    --text-muted:  #7a7570;
+    --error-bg:    rgba(139, 0, 0, 0.35);
+    --error-border:#8b0000;
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   16px;
+    --transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── BODY ── */
+body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,175,55,0.06) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ── CONTAINER ── */
+.login-container {
+    background: var(--surface);
+    padding: 48px 44px;
+    width: min(420px, 92vw);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03),
+        0 8px 32px rgba(0,0,0,0.5),
+        0 0 60px rgba(212,175,55,0.04);
+    animation: fadeUp 0.5s var(--transition) both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TÍTULO ── */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 10px auto 32px;
+    opacity: 0.6;
+    border-radius: 2px;
+}
+
+/* ── LABELS ── */
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+    transition: color var(--transition);
+}
+
+label:has(+ input:focus) {
+    color: var(--gold);
+}
+
+/* ── INPUTS ── */
+input {
+    width: 100%;
+    padding: 13px 16px;
+    background: var(--surface-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+    transition:
+        border-color var(--transition),
+        background var(--transition),
+        box-shadow var(--transition);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+input:hover {
+    border-color: #3e3e3e;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--bg);
+    box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+/* ── BOTÃO ── */
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--gold);
+    color: #111;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        background var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+button:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ── LINKS GLOBAL ── */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 22px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--gold);
+}
+
+/* ── ERRO ── */
+.erro {
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: #f5a5a5;
+    padding: 11px 16px;
+    margin-bottom: 22px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    text-align: center;
+    letter-spacing: 0.01em;
+}
+
+
+/* ════════════════════════════════
+   PÁGINA LISTAGEM DE CLIENTES
+   ════════════════════════════════ */
+
+body.page-lista {
+    min-height: 100vh;
+    height: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 56px 32px;
+}
+
+.page-wrapper {
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* ── Header ── */
+.page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.page-pretitle {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    text-align: left;
+    padding-bottom: 14px;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+    opacity: 0.5;
+    border-radius: 2px;
+    margin: 0;
+}
+
+/* ── Botão Voltar ── */
+.btn-voltar {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: left;
+    transition: color var(--transition);
+}
+
+.btn-voltar:hover {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+/* ── Botão Novo ── */
+.btn-novo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 11px 24px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: var(--radius-md);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0;
+    text-align: left;
+    transition: background var(--transition), color var(--transition);
+}
+
+.btn-novo:hover {
+    background: var(--gold);
+    color: #111;
+    text-decoration: none;
+}
+
+/* ── Card da tabela ── */
+.table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03),
+        0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* ── Tabela ── */
+.clientes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clientes-table thead tr {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+}
+
+.clientes-table th {
+    padding: 15px 24px;
+    text-align: left;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+.clientes-table tbody tr {
+    border-bottom: 1px solid #252525;
+    transition: background var(--transition);
+    animation: fadeUp 0.4s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+.clientes-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.clientes-table tbody tr:hover {
+    background: rgba(212,175,55,0.04);
+}
+
+.clientes-table td {
+    padding: 16px 24px;
+    font-size: 0.9rem;
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.col-id {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    width: 60px;
+}
+
+.col-nome {
+    font-weight: 500;
+}
+
+.col-email,
+.col-tel {
+    color: #a09a92;
+}
+
+.col-vazio {
+    color: var(--border);
+}
+
+/* ── Coluna ações ── */
+.col-acoes {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.btn-acao {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 0;
+    margin-right: 6px;
+    text-align: left;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.btn-acao:last-child {
+    margin-right: 0;
+}
+
+.btn-editar {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+}
+
+.btn-editar:hover {
+    background: var(--gold);
+    color: #111;
+    text-decoration: none;
+}
+
+.btn-excluir {
+    border: 1px solid #8b0000;
+    color: #c0392b;
+    background: transparent;
+}
+
+.btn-excluir:hover {
+    background: #8b0000;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ── Badge rodapé ── */
+.page-footer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.badge-count {
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 20px;
+}
+
+/* ── Estado vazio ── */
+.estado-vazio {
+    text-align: center;
+    padding: 72px 20px;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.estado-vazio p {
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
