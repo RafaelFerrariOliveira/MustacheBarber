@@ -33,14 +33,16 @@ class ClienteController
 {
     $id = $_GET['id'] ?? null;
 
-    if (!$id) {
+    if (!$id)
+    {
         header("Location: Index.php?action=listarClientes");
         exit;
     }
 
     $cliente = new Cliente();
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
 
         $nome     = $_POST['nome'];
         $email    = $_POST['email'];
@@ -61,7 +63,8 @@ public function excluir()
 {
     $id = $_GET['id'] ?? null;
 
-    if ($id) {
+    if ($id)
+    {
         $cliente = new Cliente();
         $cliente->excluir($id);
     }
@@ -70,12 +73,12 @@ public function excluir()
     exit;
 }
 
-    public function listar()
-    {
-        $cliente = new Cliente();
+public function listar()
+{
+    $cliente = new Cliente();
 
-        $clientes = $cliente->listar();
+    $clientes = $cliente->listar();
 
-        require 'Views/lista_clientes.php';
-    }
+    require 'Views/lista_clientes.php';
+}
 }
