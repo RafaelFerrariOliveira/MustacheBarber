@@ -34,6 +34,10 @@
             Agendamentos
         </a>
 
+        <a href="?action=listarServicos">
+            Serviços
+        </a>
+
         <a href="?action=logout">
             Sair
         </a>
