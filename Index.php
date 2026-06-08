@@ -2,9 +2,10 @@
 
 session_start();
 
-require_once 'Controllers/AuthController.php';
-require_once 'Controllers/ClienteController.php';
-require_once 'Controllers/BarbeiroController.php';
+require_once __DIR__ . '/Controllers/AuthController.php';
+require_once __DIR__ . '/Controllers/ClienteController.php';
+require_once __DIR__ . '/Controllers/BarbeiroController.php';
+require_once __DIR__ . '/Controllers/AgendamentoController.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -77,6 +78,28 @@ switch ($action)
     case 'excluirBarbeiro':
         $barbeiro = new BarbeiroController();
         $barbeiro->excluir();
+        break;
+
+    // ── Agendamentos ──
+
+    case 'criarAgendamento':
+        $agendamento = new AgendamentoController();
+        $agendamento->criar();
+        break;
+
+    case 'listarAgendamentos':
+        $agendamento = new AgendamentoController();
+        $agendamento->listar();
+        break;
+
+    case 'editarAgendamento':
+        $agendamento = new AgendamentoController();
+        $agendamento->editar();
+        break;
+
+    case 'cancelarAgendamento':
+        $agendamento = new AgendamentoController();
+        $agendamento->cancelar();
         break;
 
     // ── Dashboard ──
