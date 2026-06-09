@@ -55,7 +55,7 @@
 
     </form>
 
-    <a href="<?= isset($dadosCliente) ? '?controller=cliente&action=listar' : '?controller=auth&action=login' ?>">
+    <a href="<?= isset($dadosCliente) ? '?controller=cliente&action=listarClientes' : '?controller=auth&action=login' ?>">
         <?= isset($dadosCliente) ? '← Voltar para Clientes' : 'Voltar ao Login' ?>
     </a>
 

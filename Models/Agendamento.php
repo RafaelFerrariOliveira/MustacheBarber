@@ -57,10 +57,12 @@ class Agendamento
                 agendamentos.data_hora_fim,
                 agendamentos.status,
                 c.nome AS nome_cliente,
-                b.nome AS nome_barbeiro
+                b.nome AS nome_barbeiro,
+                s.nome AS nome_servico
             FROM agendamentos
             JOIN usuarios c ON agendamentos.cliente_id = c.id
             JOIN usuarios b ON agendamentos.barbeiro_id = b.id
+            JOIN servicos s ON agendamentos.servico_id = s.id
         ";
 
         $stmt = $this->conn->query($sql);
@@ -97,18 +99,20 @@ class Agendamento
 
     public function editar($id, $cliente_id, $barbeiro_id, $data_horario_inicio)
     {
+        $data_hora_fim = date('Y-m-d H:i:s', strtotime($data_horario_inicio . ' +1 hour'));
         $sql = "
             UPDATE agendamentos
             SET
                 cliente_id    = ?,
                 barbeiro_id    = ?,
-                data_hora_inicio    = ?
+                data_hora_inicio    = ?,
+                data_hora_fim   = ?
             WHERE id = ?
             ";
 
         $stmt = $this->conn->prepare($sql);
 
-        return $stmt->execute([$cliente_id, $barbeiro_id, $data_horario_inicio, $id]);
+        return $stmt->execute([$cliente_id, $barbeiro_id, $data_horario_inicio, $data_hora_fim, $id]);
     }
 }
 ?>

@@ -51,7 +51,7 @@
 
             if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                $cliente_id     = $_POST['cliente_id'];
+                $cliente_id     = $_SESSION['usuario_id'];
                 $barbeiro_id    = $_POST['barbeiro_id'];
                 $data_hora_incio    = $_POST['data_hora_inicio'];
 
@@ -64,7 +64,15 @@
 
             $dadosAgendamento = $agendamento->buscarPorId($id);
 
-            require __DIR__ . '/../Views/cadastro_agendamento.php';
+            require_once __DIR__ . '/../Models/Servico.php';
+            $servico = new Servico();
+            $servicos = $servico->listar();
+
+            require_once __DIR__ . '/../Models/Barbeiro.php';
+            $barbeiro = new Barbeiro();
+            $barbeiros = $barbeiro->listar();
+
+            require_once __DIR__ . '/../Views/cadastro_agendamento.php';
         }
 
         public function listar()
