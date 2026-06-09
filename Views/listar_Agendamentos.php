@@ -42,10 +42,23 @@
                         <td class="col-nome"><?= htmlspecialchars($agendamento['nome_barbeiro']) ?></td>
                         <td><?= htmlspecialchars($agendamento['data_hora_inicio']) ?></td>
                         <td><?= htmlspecialchars($agendamento['data_hora_fim']) ?></td>
-                        <td><?= htmlspecialchars($agendamento['status']) ?></td>
+                        <td>
+                            <?php if ($agendamento['status'] == 'AGENDADO'): ?>
+                                <span class="badge-ativo">AGENDADO</span>
+                            <?php elseif ($agendamento['status'] == 'FINALIZADO'): ?>
+                                <span style="background: rgba(39, 174, 96, 0.12); border: 1px solid rgba(39, 174, 96, 0.3); color: #2ecc71; display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem;">FINALIZADO</span>
+                            <?php else: ?>
+                                <span class="badge-inativo">CANCELADO</span>
+                            <?php endif; ?>
+                        </td>
                         <td class="col-acoes">
-                            <a href="?action=editarAgendamento&id=<?= $agendamento['id'] ?>" class="btn-acao btn-editar">Editar</a>
-                            <a href="?action=cancelarAgendamento&id=<?= $agendamento['id'] ?>" class="btn-acao btn-excluir" onclick="return confirm('Cancelar agendamento de <?= htmlspecialchars($agendamento['nome_cliente']) ?>?')">Cancelar</a>
+                            <?php if ($agendamento['status'] == 'AGENDADO'): ?>
+                                <a href="?action=editarAgendamento&id=<?= $agendamento['id'] ?>" class="btn-acao btn-editar">Editar</a>
+                                <a href="?action=finalizarAgendamento&id=<?= $agendamento['id'] ?>" class="btn-acao btn-editar" style="border-color: #2ecc71; color: #2ecc71;" onclick="return confirm('Finalizar agendamento de <?= htmlspecialchars($agendamento['nome_cliente']) ?>?')">Finalizar</a>
+                                <a href="?action=cancelarAgendamento&id=<?= $agendamento['id'] ?>" class="btn-acao btn-excluir" onclick="return confirm('Cancelar agendamento de <?= htmlspecialchars($agendamento['nome_cliente']) ?>?')">Cancelar</a>
+                            <?php else: ?>
+                                <span style="color: #7a7570; font-size: 0.75rem;">Sem ações</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

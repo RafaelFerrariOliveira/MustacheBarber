@@ -37,8 +37,6 @@ switch ($action)
         $auth->logout();
         break;
 
-    // ── Clientes ──
-
     case 'cadastroCliente':
         $cliente = new ClienteController();
         $cliente->cadastrar();
@@ -58,8 +56,6 @@ switch ($action)
         $cliente = new ClienteController();
         $cliente->excluir();
         break;
-
-    // ── Barbeiros ──
 
     case 'listarBarbeiros':
         $barbeiro = new BarbeiroController();
@@ -81,8 +77,6 @@ switch ($action)
         $barbeiro->excluir();
         break;
 
-    // ── Agendamentos ──
-
     case 'criarAgendamento':
         $agendamento = new AgendamentoController();
         $agendamento->criar();
@@ -103,7 +97,10 @@ switch ($action)
         $agendamento->cancelar();
         break;
 
-    // ── Serviços ──
+    case 'finalizarAgendamento':
+        $agendamento = new AgendamentoController();
+        $agendamento->finalizar();
+        break;
 
     case 'listarServicos':
         $servico = new ServicoController();
@@ -130,8 +127,6 @@ switch ($action)
         $servico->toggleAtivo((int)($_GET['id'] ?? 0));
         break;
 
-    // ── Dashboard ──
-
     case 'dashboard':
         require 'Views/dashboard.php';
         break;
@@ -140,3 +135,4 @@ switch ($action)
         header('Location: Index.php?action=dashboard');
         exit;
 }
+?>
