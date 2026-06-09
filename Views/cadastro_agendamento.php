@@ -16,25 +16,25 @@
         <div class="erro"><?= htmlspecialchars($erro) ?></div>
     <?php endif; ?>
 
-    <form method="POST">
+    <form action="" method="post">
 
-        <label>ID do Cliente</label>
-        <input
-            type="number"
-            name="cliente_id"
-            placeholder="ID do cliente"
-            value="<?= htmlspecialchars($dadosAgendamento['cliente_id'] ?? '') ?>"
-            required
-        >
+        <label>Serviço</label>    
+        <select name="servico_id" required>
+            <?php foreach($servicos as $servico): ?>
+                <option value="<?= $servico['id'] ?>">
+                    <?= htmlspecialchars($servico['nome']) ?> - R$ <?= $servico['valor'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>   
 
-        <label>ID do Barbeiro</label>
-        <input
-            type="number"
-            name="barbeiro_id"
-            placeholder="ID do barbeiro"
-            value="<?= htmlspecialchars($dadosAgendamento['barbeiro_id'] ?? '') ?>"
-            required
-        >
+        <label>Barbeiro</label>
+        <select name="barbeiro_id" required>
+            <?php foreach($barbeiros as $barbeiro): ?>
+                <option value="<?= $barbeiro['id'] ?>">
+                    <?= htmlspecialchars($barbeiro['nome']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
         <label>Data e Hora</label>
         <input

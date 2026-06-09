@@ -12,9 +12,8 @@ class Agendamento
         $this->conn = $db->conectar();
     }
 
-    public function criarReserva($cliente_id, $barbeiro_id, $data_horario_inicio)
+    public function criarReserva($cliente_id, $barbeiro_id, $servico_id, $data_horario_inicio)
     {
-        $servico_id = 1;
         $data_hora_fim = date('Y-m-d H:i:s', strtotime($data_horario_inicio . ' +1 hour'));
         $status = 'AGENDADO';
         $observacoes = null;

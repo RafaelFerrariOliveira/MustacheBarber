@@ -6,6 +6,7 @@ require_once __DIR__ . '/Controllers/AuthController.php';
 require_once __DIR__ . '/Controllers/ClienteController.php';
 require_once __DIR__ . '/Controllers/BarbeiroController.php';
 require_once __DIR__ . '/Controllers/AgendamentoController.php';
+require_once __DIR__ . '/Controllers/ServicoController.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -100,6 +101,33 @@ switch ($action)
     case 'cancelarAgendamento':
         $agendamento = new AgendamentoController();
         $agendamento->cancelar();
+        break;
+
+    // ── Serviços ──
+
+    case 'listarServicos':
+        $servico = new ServicoController();
+        $servico->index();
+        break;
+
+    case 'cadastrarServico':
+        $servico = new ServicoController();
+        $servico->criar();
+        break;
+
+    case 'editarServico':
+        $servico = new ServicoController();
+        $servico->editar((int)($_GET['id'] ?? 0));
+        break;
+
+    case 'excluirServico':
+        $servico = new ServicoController();
+        $servico->excluir((int)($_GET['id'] ?? 0));
+        break;
+
+    case 'toggleServico':
+        $servico = new ServicoController();
+        $servico->toggleAtivo((int)($_GET['id'] ?? 0));
         break;
 
     // ── Dashboard ──
