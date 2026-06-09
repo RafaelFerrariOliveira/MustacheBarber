@@ -5,7 +5,7 @@
 
     <div class="page-header">
         <div>
-            <a href="javascript:history.back()" class="btn-voltar">← Voltar</a>
+            <a href="?action=dashboard" class="btn-voltar">← Voltar</a>
             <span class="page-pretitle">Painel Administrativo</span>
             <h1 class="page-title">Clientes Cadastrados</h1>
         </div>

@@ -56,7 +56,7 @@ class ClienteController
 
     $dadosCliente = $cliente->buscarPorId($id);
 
-    require 'Views/cadastro_cliente.php'; // ← view compartilhada
+    require 'Views/cadastro_cliente.php';
 }
 
 public function excluir()
